@@ -3,10 +3,26 @@ namespace Hangman
     class Hangman
     {
         static public void ManageHangman()
-        {
-            Hangman hangman = new Hangman();
-            setCurrentWord();
-            Console.WriteLine(hangmanState());
+        {   
+            int wordLength;
+
+            string word = setCurrentWord();
+            wordLength = word.Length;
+
+            int currentHangman = 0;
+
+            string displayString = createDisplayString(wordLength);
+
+            
+
+            while (true)
+            {
+                Console.WriteLine(hangmanState(currentHangman));
+                Console.WriteLine(displayString);
+                Console.WriteLine(word);
+
+                break;
+            }
         }
 
         private static string setCurrentWord()
@@ -19,99 +35,36 @@ namespace Hangman
             return currentWord;
         }
 
-        private static string hangmanState()
+        private static string hangmanState(int args)
         {
+            int currentState = args;
+
+            // string representation of the hangman gallows.
             string[] hangman = 
             {
-                "_________\n|/      |\n|\n|\n|\n|\n|___\n", 
+                "_________\n|/      |\n|        \n|       \n|       \n|\n|___\n",
+                "_________\n|/      |\n|       0\n|       \n|       \n|\n|___\n",
+                "_________\n|/      |\n|       0\n|       |\n|       \n|\n|___\n",
+                "_________\n|/      |\n|       0\n|       |\\\n|       \n|\n|___\n",
+                "_________\n|/      |\n|       0\n|      /|\\\n|       \n|\n|___\n",
+                "_________\n|/      |\n|       0\n|      /|\\\n|        \\\n|\n|___\n",
+                "_________\n|/      |\n|       0\n|      /|\\\n|      / \\\n|\n|___\n",
             };
 
-            return hangman[0];
+            return hangman[currentState];
 
+        }
 
-// "
-//    _________
-//     |/   |      
-//     |              
-//     |                
-//     |                 
-//     |               
-//     |                   
-//     |___                 
-//     H",
+        private static string createDisplayString(int args)
+        {
+            string displayString = "";
 
-// "
-//    _________       
-//     |/   |              
-//     |   (_)
-//     |                         
-//     |                       
-//     |                         
-//     |                          
-//     |___                       
-//     HA",
+            foreach (int value in Enumerable.Range(1, args))
+            {
+                displayString = displayString + "_ ";
+            }
 
-// "
-//    ________               
-//     |/   |                   
-//     |   (_)                  
-//     |    |                     
-//     |    |                    
-//     |                           
-//     |                            
-//     |___                    
-//     HAN",
-
-
-// "
-//    _________             
-//     |/   |               
-//     |   (_)                   
-//     |   /|                     
-//     |    |                    
-//     |                        
-//     |                          
-//     |___                          
-//     HANG",
-
-
-// "
-//    _________              
-//     |/   |                     
-//     |   (_)                     
-//     |   /|\                    
-//     |    |                       
-//     |                             
-//     |                            
-//     |___                          
-//     HANGM",
-
-
-
-// "
-//    ________                   
-//     |/   |                         
-//     |   (_)                      
-//     |   /|\                             
-//     |    |                          
-//     |   /                            
-//     |                                  
-//     |___                              
-//     HANGMA",
-
-
-// "
-//    ________
-//     |/   |     
-//     |   (_)    
-//     |   /|\           
-//     |    |        
-//     |   / \        
-//     |               
-//     |___           
-//     HANGMAN"
-
-
+            return displayString;
         }
     }
 }
