@@ -11,6 +11,7 @@ namespace Hangman
             int currentHangman = 0;
             string newDisplayString;
             string incorrectChars = "";
+            bool gameOver = false;
 
             string displayString = createDisplayString(wordLength);
 
@@ -29,6 +30,11 @@ namespace Hangman
                     Console.WriteLine("The correct word was: " + word);
                     break;
                 }
+                else if (gameOver == true)
+                {
+                    Console.WriteLine("The correct word was: " + word + " You won!");
+                    break;
+                }
 
                 guess = Convert.ToChar(Console.ReadLine());
                 newDisplayString = checkGuess(word, guess);
@@ -41,6 +47,8 @@ namespace Hangman
                 } else {
                     displayString = updateDisplayString(displayString, newDisplayString, wordLength);
                 }
+
+                gameOver = checkIfGameOver(displayString, wordLength);
             }
         }
 
@@ -94,7 +102,6 @@ namespace Hangman
 
             foreach (char c in oldString)
             {
-
                 tempArray[index] = c;
                 index++;
             }
@@ -112,6 +119,7 @@ namespace Hangman
                 mergedString += c;
             }
 
+ 
             return mergedString;
         }
 
@@ -137,6 +145,23 @@ namespace Hangman
             } else {
                 return newDisplayString;
             }
+        }
+        private static bool checkIfGameOver(string mergedString, int wordLength){
+            int correctLetterCount = 0;
+            bool gameOver = false;
+            
+            foreach (char c in mergedString)
+            {
+                if (c != ' ' && c != '_')
+                {
+                    correctLetterCount++;
+                }
+            }
+            if (correctLetterCount == wordLength)
+            {
+                gameOver = true;
+            }
+            return gameOver;
         }
     }
 }
