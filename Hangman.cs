@@ -19,12 +19,12 @@ namespace Hangman
 
             while (true)
             {
-                Console.WriteLine(hangmanState(currentHangman));
+                Console.WriteLine(hangmanState(currentHangman));  // displays the current hangman image, updates before check for game over to not skip final game image
                 Console.WriteLine(displayString);
                 Console.WriteLine(incorrectChars);
                 // Console.WriteLine(currentHangman);
 
-
+                // gameOver conditions
                 if (currentHangman == 6)
                 {
                     Console.WriteLine("The correct word was: " + word);
@@ -35,9 +35,10 @@ namespace Hangman
                     Console.WriteLine("The correct word was: " + word + " You won!");
                     break;
                 }
+                // end of gameOver conditions
 
                 guess = Convert.ToChar(Console.ReadLine());
-                newDisplayString = checkGuess(word, guess);
+                newDisplayString = checkGuess(word, guess);  // returns "none" if the guess was incorrect 
 
                 if (newDisplayString == "none")
                 {
@@ -48,7 +49,7 @@ namespace Hangman
                     displayString = updateDisplayString(displayString, newDisplayString, wordLength);
                 }
 
-                gameOver = checkIfGameOver(displayString, wordLength);
+                gameOver = checkIfGameOver(displayString, wordLength);  // compares the number of correct letters guessed to the length of the target word
             }
         }
 

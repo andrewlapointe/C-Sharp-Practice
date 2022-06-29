@@ -12,8 +12,11 @@ namespace Main
             
             Console.WriteLine("What app would you like to use?");
             Console.WriteLine("[Calculator, Hangman]");
-            Console.Write("> "); appSelection = Console.ReadLine().ToLower();
-
+            Console.Write("> "); 
+            appSelection = Console.ReadLine();
+            if (appSelection != null) {
+                appSelection = appSelection.ToLower();
+            }
             if (appSelection == "calculator")
             {
                 Calculator.ManageCalculator();
