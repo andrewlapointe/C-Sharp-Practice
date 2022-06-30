@@ -19,7 +19,8 @@ namespace Hangman
 
             while (true)
             {
-                Console.WriteLine(hangmanState(currentHangman));  // displays the current hangman image, updates before check for game over to not skip final game image
+                newDisplayString = hangmanState(currentHangman);
+                Console.WriteLine(newDisplayString);  // displays the current hangman image, updates before check for game over to not skip final game image
                 Console.WriteLine(displayString);
                 Console.WriteLine(incorrectChars);
                 // Console.WriteLine(currentHangman);
@@ -36,18 +37,26 @@ namespace Hangman
                     break;
                 }
                 // end of gameOver conditions
-
-                guess = Convert.ToChar(Console.ReadLine());
-                newDisplayString = checkGuess(word, guess);  // returns "none" if the guess was incorrect 
-
-                if (newDisplayString == "none")
+                try
                 {
-                    currentHangman++;
+                    guess = Convert.ToChar(Console.ReadLine());
+                    newDisplayString = checkGuess(word, guess);  // returns "none" if the guess was incorrect
+                    if (newDisplayString == "none")
+                    {
+                        currentHangman++;
 
-                    incorrectChars += guess;
-                } else {
-                    displayString = updateDisplayString(displayString, newDisplayString, wordLength);
+                        incorrectChars += guess;
+                    } else {
+                        displayString = updateDisplayString(displayString, newDisplayString, wordLength);
+                    }
                 }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+
+
 
                 gameOver = checkIfGameOver(displayString, wordLength);  // compares the number of correct letters guessed to the length of the target word
             }
