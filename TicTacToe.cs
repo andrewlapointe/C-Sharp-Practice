@@ -1,36 +1,61 @@
 namespace TicTacToe
 {
+    using System.Linq;
     class TicTacToe
     {
         private string currentGameBoard;
-        private string currentPlayer = "X";
+        private string currentPlayer = "O";
         private bool gameIsOver = false;
-        private string[] defaultPos = {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
-        private string[] pos = {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
+        private string[] defaultPos = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        private string[] pos = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
+        private int[] takenSpaces = new int[10];
         private string gameBoard; 
         private string? play;
 
 
-        public TicTacToe()
+        public TicTacToe()  // Constructor
         {
             currentGameBoard = createDisplayString();
         }
         public void Main()
         {   
             int move;
-            while (true)
+            while (true)  // allows players to play again
             {
-                pos = defaultPos;
-                while (!gameIsOver)
+                for(int i = 0; i < defaultPos.Length; i++)  // resets board
                 {
-                    nextPlayer();
+                    pos[i] = defaultPos[i];
+                }  
+                Array.Clear(takenSpaces);
+                takenSpaces[9] = -1;
+                move = -1;
+                gameIsOver = false;
+                
+
+                while (!gameIsOver)  // main game play loop
+                {
                     updateDisplayString();
                     displayString();
-                    Console.WriteLine(String.Format("{0}'s turn. Which space will you take?: ", currentPlayer));
-                    move = Convert.ToInt16(Console.ReadLine());
-                    pos[move] = currentPlayer;
+                    nextPlayer();
+
+                    // Player input
+                    while (takenSpaces.Contains(move))
+                    {
+                        Console.Write(String.Format("{0}'s turn. Which space will you take?: ", currentPlayer));
+                        move = Convert.ToInt16(Console.ReadLine());
+
+                        if (takenSpaces.Contains(move) == false)
+                        {
+                            pos[move - 1] = currentPlayer;
+                            takenSpaces[move] = move;
+                            break;
+                        } else {
+                            Console.WriteLine("Space is already taken. Try again.");
+                        }
+                    }
                     checkForWin();
                 }
+                updateDisplayString();
                 displayString();
                 Console.WriteLine(String.Format("Game Over. {0} won!", currentPlayer));
                 Console.Write("Play Again? [y/n]: "); play = Console.ReadLine().ToLower();
