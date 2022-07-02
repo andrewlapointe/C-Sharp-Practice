@@ -32,7 +32,9 @@ dotnet build
 
 ## Overview
 
-This project was created to explore the C# language. My goal is to begin to use the Unity game engine, which uses C#. This was my first project in the language, so
+This project was created to explore the C# language. My goal is to begin to use the Unity game engine, which uses C#.
+
+This was my first project in the language, so
 it was chosen to be simple, yet cover a variety of topics.
 
 This includes:
