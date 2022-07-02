@@ -8,12 +8,12 @@ namespace Calculator
             string? operationType;
             string result;
 
-            while (true) 
+            while (true)
             {
-
                 Console.WriteLine("What operation would you like to preform?");
                 Console.WriteLine("add, subtract, multiply, divide, quit");
-                Console.Write("> "); operationType = Console.ReadLine().ToLower();
+                Console.Write("> ");
+                operationType = Console.ReadLine().ToLower();
 
                 if (operationType == "quit" || operationType == "exit" || operationType == "end")
                 {
@@ -21,15 +21,17 @@ namespace Calculator
                 }
 
                 Console.WriteLine("Enter first number");
-                Console.Write("> "); inputNumbers[0] = Convert.ToDouble(Console.ReadLine());
+                Console.Write("> ");
+                inputNumbers[0] = Convert.ToDouble(Console.ReadLine());
 
                 Console.WriteLine("Enter second number");
-                Console.Write("> "); inputNumbers[1] = Convert.ToDouble(Console.ReadLine());
+                Console.Write("> ");
+                inputNumbers[1] = Convert.ToDouble(Console.ReadLine());
 
                 if (operationType == "add" || operationType == "addition")
                 {
                     result = Convert.ToString(Add(inputNumbers));
-                } 
+                }
                 else if (operationType == "subtract" || operationType == "subtraction")
                 {
                     result = Convert.ToString(Subtract(inputNumbers));
@@ -41,16 +43,19 @@ namespace Calculator
                 else if (operationType == "divide" || operationType == "division")
                 {
                     result = Divide(inputNumbers);
-                } else {
+                }
+                else
+                {
                     result = "Error. Try again.";
                 }
 
                 Console.WriteLine("The result is: " + result);
             }
         }
+
         private static double Add(double[] args)
         {
-            double[] addends = {args[0], args[1]};
+            double[] addends = { args[0], args[1] };
             double sum;
 
             sum = addends[0] + addends[1];
@@ -65,7 +70,7 @@ namespace Calculator
             double difference;
 
             difference = minuend - subtrahend;
-            
+
             return difference;
         }
 
@@ -79,7 +84,7 @@ namespace Calculator
 
             return product;
         }
-        
+
         private static string Divide(double[] args)
         {
             double dividend = args[0];
@@ -89,12 +94,12 @@ namespace Calculator
             if (divisor == 0)
             {
                 return "Undefined";
-            } else {
+            }
+            else
+            {
                 quotient = Convert.ToString(dividend / divisor);
                 return quotient;
             }
-
-            
         }
     }
 }

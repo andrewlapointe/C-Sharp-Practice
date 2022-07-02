@@ -5,30 +5,31 @@ namespace Main
     using Calculator;
     using Hangman;
     using TicTacToe;
+
     class Program
     {
         static void Main(string[] args)
         {
             string? appSelection;
-            
+
             Console.WriteLine("What app would you like to use?");
             Console.WriteLine("[Calculator, Hangman, TicTacToe]");
-            Console.Write("> "); 
+            Console.Write("> ");
             appSelection = Console.ReadLine();
             if (appSelection != null)
             {
                 appSelection = appSelection.ToLower();
-            
+
                 switch (appSelection)
                 {
-                    case "calculator": 
+                    case "calculator":
                         Calculator.ManageCalculator();
                         break;
-                    case "hangman": 
+                    case "hangman":
                         Hangman.ManageHangman();
                         break;
                     case "t":
-                    TicTacToe ticTacToe = new TicTacToe();
+                        TicTacToe ticTacToe = new TicTacToe();
                         ticTacToe.Main();
                         break;
                 }

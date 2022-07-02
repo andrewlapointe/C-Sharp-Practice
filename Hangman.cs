@@ -3,7 +3,7 @@ namespace Hangman
     class Hangman
     {
         static public void ManageHangman()
-        {   
+        {
             int wordLength;
             char guess;
             string word = setCurrentWord();
@@ -15,12 +15,10 @@ namespace Hangman
 
             string displayString = createDisplayString(wordLength);
 
-            
-
             while (true)
             {
                 newDisplayString = hangmanState(currentHangman);
-                Console.WriteLine(newDisplayString);  // displays the current hangman image, updates before check for game over to not skip final game image
+                Console.WriteLine(newDisplayString); // displays the current hangman image, updates before check for game over to not skip final game image
                 Console.WriteLine(displayString);
                 Console.WriteLine(incorrectChars);
                 // Console.WriteLine(currentHangman);
@@ -40,14 +38,20 @@ namespace Hangman
                 try
                 {
                     guess = Convert.ToChar(Console.ReadLine());
-                    newDisplayString = checkGuess(word, guess);  // returns "none" if the guess was incorrect
+                    newDisplayString = checkGuess(word, guess); // returns "none" if the guess was incorrect
                     if (newDisplayString == "none")
                     {
                         currentHangman++;
 
                         incorrectChars += guess;
-                    } else {
-                        displayString = updateDisplayString(displayString, newDisplayString, wordLength);
+                    }
+                    else
+                    {
+                        displayString = updateDisplayString(
+                            displayString,
+                            newDisplayString,
+                            wordLength
+                        );
                     }
                 }
                 catch (Exception e)
@@ -55,10 +59,7 @@ namespace Hangman
                     Console.WriteLine(e.Message);
                 }
 
-
-
-
-                gameOver = checkIfGameOver(displayString, wordLength);  // compares the number of correct letters guessed to the length of the target word
+                gameOver = checkIfGameOver(displayString, wordLength); // compares the number of correct letters guessed to the length of the target word
             }
         }
 
@@ -66,8 +67,8 @@ namespace Hangman
         {
             Random random = new Random();
             // string[] wordList = {"super", "help", "virginia", "idaho", "computer", "compiler", "sharp", "supercalifragilisticexpialidocious"};
-            string[] wordList = {"supercalifragilisticexpialidocious"};
-            
+            string[] wordList = { "supercalifragilisticexpialidocious" };
+
             string currentWord = wordList[random.Next(0, wordList.Length)];
 
             return currentWord;
@@ -78,7 +79,7 @@ namespace Hangman
             int currentState = args;
 
             // string representation of the hangman gallows.
-            string[] hangman = 
+            string[] hangman =
             {
                 "_________\n|/      |\n|        \n|       \n|       \n|\n|___\n",
                 "_________\n|/      |\n|       0\n|       \n|       \n|\n|___\n",
@@ -90,7 +91,6 @@ namespace Hangman
             };
 
             return hangman[currentState];
-
         }
 
         private static string createDisplayString(int args)
@@ -130,13 +130,12 @@ namespace Hangman
                 mergedString += c;
             }
 
- 
             return mergedString;
         }
 
         private static string checkGuess(string word, char guess)
         {
-            string newDisplayString = "";   
+            string newDisplayString = "";
             int charInWord = 0;
 
             foreach (char c in word)
@@ -145,7 +144,9 @@ namespace Hangman
                 {
                     newDisplayString += guess + " ";
                     charInWord++;
-                } else {
+                }
+                else
+                {
                     newDisplayString += "_ ";
                 }
             }
@@ -153,14 +154,18 @@ namespace Hangman
             if (charInWord == 0)
             {
                 return "none";
-            } else {
+            }
+            else
+            {
                 return newDisplayString;
             }
         }
-        private static bool checkIfGameOver(string mergedString, int wordLength){
+
+        private static bool checkIfGameOver(string mergedString, int wordLength)
+        {
             int correctLetterCount = 0;
             bool gameOver = false;
-            
+
             foreach (char c in mergedString)
             {
                 if (c != ' ' && c != '_')
