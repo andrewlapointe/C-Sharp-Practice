@@ -24,7 +24,7 @@ Or to compile the code and create an executable:
 dotnet build
 ```
 
-Once the build has finished, run the executable created under the bin directory.
+Once the build has finished, run the executable created under the bin directory.z
 
 ## Overview
 
