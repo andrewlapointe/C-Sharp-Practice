@@ -64,7 +64,7 @@ namespace TicTacToe
                 Console.WriteLine(String.Format("Game Over. {0} won!", currentPlayer));
                 Console.Write("Play Again? [y/n]: ");
                 play = Console.ReadLine().ToLower();
-                if (play == "n")
+                if (play == "n" || play == "quit")
                 {
                     break;
                 }
