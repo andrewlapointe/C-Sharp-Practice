@@ -2,12 +2,6 @@
 
 ## Running the Code
 
-The fastest way to use the program is to run C-Sharp-Practice.exe found in the bin folder.
-<br>
-
-</br>
-If you would rather build the executable yourself you must first install .Net.
-
 [Download .Net here](URL "https://dotnet.microsoft.com/en-us/download")
 
 To check if you have already installed .Net, open a command prompt and run:
