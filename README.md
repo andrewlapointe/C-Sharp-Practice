@@ -18,11 +18,13 @@ To compile and run the code:
 dotnet run
 ```
 
-To compile the code and create an executable:
+Or to compile the code and create an executable:
 
 ```
 dotnet build
 ```
+
+Once the build has finished, run the executable created under the bin directory.
 
 ## Overview
 
