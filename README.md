@@ -1,6 +1,6 @@
 # C-Sharp-Practice
 
-## Running the Code
+<!-- ## Running the Code
 
 [Download .Net here](URL "https://dotnet.microsoft.com/en-us/download")
 
@@ -24,7 +24,7 @@ Or to compile the code and create an executable:
 dotnet build
 ```
 
-Once the build has finished, run the executable created under the bin directory.z
+Once the build has finished, run the executable created under the bin directory. -->
 
 ## Overview
 
