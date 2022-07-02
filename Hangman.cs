@@ -66,8 +66,18 @@ namespace Hangman
         private static string setCurrentWord()
         {
             Random random = new Random();
-            // string[] wordList = {"super", "help", "virginia", "idaho", "computer", "compiler", "sharp", "supercalifragilisticexpialidocious"};
-            string[] wordList = { "supercalifragilisticexpialidocious" };
+            string[] wordList =
+            {
+                "super",
+                "help",
+                "virginia",
+                "idaho",
+                "computer",
+                "compiler",
+                "sharp",
+                "supercalifragilisticexpialidocious"
+            };
+            // string[] wordList = { "supercalifragilisticexpialidocious" };
 
             string currentWord = wordList[random.Next(0, wordList.Length)];
 
