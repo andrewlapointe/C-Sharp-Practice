@@ -31,6 +31,7 @@ namespace TicTacToe
                 takenSpaces[9] = -1;
                 move = -1;
                 gameIsOver = false;
+                int moveCount = 0;
 
                 while (!gameIsOver) // main game play loop
                 {
@@ -50,6 +51,7 @@ namespace TicTacToe
                         {
                             positition[move - 1] = currentPlayer;
                             takenSpaces[move] = move;
+                            moveCount++;
                             break;
                         }
                         else
@@ -58,10 +60,21 @@ namespace TicTacToe
                         }
                     }
                     checkForWin();
+                    if (moveCount == 9)
+                    {
+                        gameIsOver = true;
+                    }
                 }
                 updateDisplayString();
                 displayString();
-                Console.WriteLine(String.Format("Game Over. {0} won!", currentPlayer));
+                if (moveCount == 9)
+                {
+                    Console.WriteLine(String.Format("Tie!"));
+                }
+                else
+                {
+                    Console.WriteLine(String.Format("Game Over. {0} won!", currentPlayer));
+                }
                 Console.Write("Play Again? [y/n]: ");
                 play = Console.ReadLine().ToLower();
                 if (play == "n" || play == "quit")
