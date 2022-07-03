@@ -193,20 +193,27 @@ namespace TicTacToe
             }
             else if (positition[8] == currentPlayer)
             {
-                switch (lineHead)
+                if (positition[2] == currentPlayer)
                 {
-                    case 2:
-                        if (positition[5] == currentPlayer)
-                        {
-                            gameIsOver = true;
-                        }
-                        return;
-                    case 6:
-                        if (positition[3] == currentPlayer)
-                        {
-                            gameIsOver = true;
-                        }
-                        return;
+                    lineHead = 2;
+                    if (positition[5] == currentPlayer)
+                    {
+                        gameIsOver = true;
+                    }
+                    return;
+                }
+                else if (positition[6] == currentPlayer)
+                {
+                    lineHead = 6;
+                    if (positition[7] == currentPlayer)
+                    {
+                        gameIsOver = true;
+                    }
+                    return;
+                }
+                else
+                {
+                    return;
                 }
             }
         }
